@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glow Spa — Add Service</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.png" />
+
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="site-nav">
+        <a href="index.html" class="brand" aria-label="Home">
+          <img src="logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+          <span>Glow Spa</span>
+        </a>
+        <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+        <div class="nav-links">
+          <a href="explore.html">Explore</a>
+          <a href="customer.html">Customers</a>
+          <a href="managing.html" class="active">Managing</a>
+          <a href="staff.html">Staff</a>
+          
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="index.html">Home</a> ›
+  <a href="managing.html">Managing</a> ›
+  <span>Add service</span>
+</nav>
+
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="page-title">Add New Spa</h1>
+      <p class="page-subtitle">Fill in the spa details below.</p>
+    </div>
+  </section>
+
+  <main class="container section">
+    <section class="card">
+      <form class="mt-4" >
+        <div class="grid">
+
+           <div class="form-row">
+            <img src="image.png" alt="add image">
+            <label>Photo</label>
+            <input class="mt-2" type="file" accept="image/*" required />
+          </div>
+
+          <div class="form-row">
+            <label>Name</label>
+            <input class="input mt-2" type="text" placeholder="Spa Name" required />
+          </div>
+
+          <div>
+            <label>Price Range (SAR)</label>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <input class="input" type="number" min="0" step="50" placeholder="Min" style="flex:1;" required>
+              <input class="input" type="number" min="0" step="50" placeholder="Max" style="flex:1;" required>
+            </div>
+          </div>
+
+         
+          <div class="form-row">
+            <label>Rating</label>
+            <input class="input mt-2" type="number" min="0.5" step="0.5" max="5" value="0.5" required />
+          </div>
+
+          <div class="form-row">
+            <label>Description</label>
+            <textarea class="mt-2" rows="4" required placeholder="Spa Description..."></textarea>
+          </div>
+        </div>
+
+        <div class="mt-6" style="display:flex; gap:.5rem;">
+          <button class="btn primary" type="submit">Add New Spa +</button>
+          <a class="btn" href="managing.html">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  
+<section class="bottom-band container">
+  <div class="band">
+    
+    <div class="band-left">
+      <img src="logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+      <div class="band-about">
+        <a href="about.html">About</a>
+      </div>
+    </div>
+
+    
+    <div class="band-right">
+      <h4>Contact us</h4>
+      <div class="handles">
+         <span>@glowapa.sa</span>
+        <span>@spa_support</span>
+        <span>@relax.glow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content">
+        <div>
+         <p>© 2025 Glow Spa. All rights reserved.</p>
+        </div>
+        
+  </footer>
+
+</body>
+</html>
