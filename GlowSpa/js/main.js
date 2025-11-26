@@ -3,9 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   setupBackToTop();
   startClock();
   setupMenuToggle();
+  setupJoinForm();
 });
-
-//THEME TOGGLE 
 
 function setupTheme() {
   var body = document.body;
@@ -109,10 +108,6 @@ function setupMenuToggle() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  setupJoinForm();
-});
-
 function setupJoinForm() {
   var form = document.getElementById("joinForm");
   if (!form) {
@@ -189,4 +184,3 @@ function setupJoinForm() {
     form.reset();
   });
 }
-
