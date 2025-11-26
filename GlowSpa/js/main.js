@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
   startClock();
   setupMenuToggle();
   setupJoinForm();
+  setupExplorePage();
+  setupCustomerPage();
+  setupAddServicePage();   
+  setupManagingPage();     
+  setupStaffPage();
+  setupAboutPage();
 });
 
 function setupTheme() {
@@ -113,6 +119,167 @@ function setupJoinForm() {
   if (!form) {
     return;
   }
+
+
+function getSpasFromStorage() {
+  var stored = localStorage.getItem("glowspa-spas");
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.log("Error parsing stored spas:", e);
+      return [];
+    }
+  }
+  return [];
+}
+
+function saveSpasToStorage(spas) {
+  localStorage.setItem("glowspa-spas", JSON.stringify(spas));
+}
+
+  // ADD SERVICE PAGE (addservice.html) 
+
+function setupAddServicePage() {
+  var nameInput = document.getElementById("spaName");
+  var minInput = document.getElementById("spaPriceMin");
+
+  // If these don't exist, we're not on addservice.html
+  if (!nameInput || !minInput) {
+    return;
+  }
+
+ 
+}
+
+function addSpa() {
+  var nameInput = document.getElementById("spaName");
+  var minInput = document.getElementById("spaPriceMin");
+  var maxInput = document.getElementById("spaPriceMax");
+  var ratingInput = document.getElementById("spaRating");
+  var descInput = document.getElementById("spaDescription");
+
+  if (!nameInput || !minInput || !maxInput || !ratingInput || !descInput) {
+    alert("Form elements not found. Please check addservice.html ids.");
+    return;
+  }
+
+  var name = nameInput.value.trim();
+  var minPrice = minInput.value.trim();
+  var maxPrice = maxInput.value.trim();
+  var rating = ratingInput.value.trim();
+  var desc = descInput.value.trim();
+
+  if (name === "" || minPrice === "" || maxPrice === "" || rating === "" || desc === "") {
+    alert("Please fill in all fields before adding a spa.");
+    return;
+  }
+
+  var minNumber = parseFloat(minPrice);
+  var maxNumber = parseFloat(maxPrice);
+  var ratingNumber = parseFloat(rating);
+
+  if (isNaN(minNumber) || isNaN(maxNumber) || minNumber < 0 || maxNumber < 0 || minNumber > maxNumber) {
+    alert("Please enter a valid price range (Min <= Max, both ≥ 0).");
+    return;
+  }
+
+  if (isNaN(ratingNumber) || ratingNumber <= 0 || ratingNumber > 5) {
+    alert("Please enter a rating between 0.5 and 5.");
+    return;
+  }
+
+  var spas = getSpasFromStorage();
+
+  var newSpa = {
+    id: new Date().getTime(),
+    name: name,
+    minPrice: minNumber,
+    maxPrice: maxNumber,
+    rating: ratingNumber,
+    description: desc
+  };
+
+  spas.push(newSpa);
+  saveSpasToStorage(spas);
+
+  alert("New spa added successfully!");
+
+  // Clear form
+  nameInput.value = "";
+  minInput.value = "";
+  maxInput.value = "";
+  ratingInput.value = "0.5";
+  descInput.value = "";
+
+  
+}
+  // MANAGING PAGE (managing.html)
+
+function setupManagingPage() {
+  var dynamicSpasContainer = document.getElementById("dynamicSpas");
+  var noSpasMessage = document.getElementById("noSpasMessage");
+
+  // If not on managing.html, stop
+  if (!dynamicSpasContainer) {
+    return;
+  }
+
+  var spas = getSpasFromStorage();
+  renderSpasList(spas, dynamicSpasContainer, noSpasMessage);
+}
+
+function renderSpasList(spas, container, noSpasMessage) {
+  container.innerHTML = "";
+
+  if (!spas || spas.length === 0) {
+    if (noSpasMessage) {
+      noSpasMessage.style.display = "block";
+    }
+    return;
+  }
+
+  if (noSpasMessage) {
+    noSpasMessage.style.display = "none";
+  }
+
+  for (var i = 0; i < spas.length; i++) {
+    var spa = spas[i];
+
+    var item = document.createElement("div");
+    item.className = "service-item";
+
+    // image (we just use a generic image.png)
+    var img = document.createElement("img");
+    img.src = "images/image.png";
+    img.alt = "";
+    item.appendChild(img);
+
+    var info = document.createElement("div");
+
+    var title = document.createElement("strong");
+    title.textContent = spa.name;
+    info.appendChild(title);
+    info.appendChild(document.createElement("br"));
+
+    var details = document.createElement("small");
+    details.textContent =
+      spa.minPrice + "-" + spa.maxPrice + " SAR · " + spa.rating + "★";
+    info.appendChild(details);
+    info.appendChild(document.createElement("br"));
+
+    var desc = document.createElement("small");
+    desc.textContent = spa.description;
+    info.appendChild(desc);
+
+    item.appendChild(info);
+
+    container.appendChild(item);
+  }
+}
+
+
+
 
   var nameInput = document.getElementById("jt-name");
   var emailInput = document.getElementById("jt-email");
