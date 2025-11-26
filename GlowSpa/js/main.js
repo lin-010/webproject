@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   setupJoinForm();
   setupExplorePage();
   setupCustomerPage();
-  setupAddServicePage();   
-  setupManagingPage();     
+  setupAddServicePage();
+  setupManagingPage();
   setupStaffPage();
   setupAboutPage();
 });
@@ -15,10 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function setupTheme() {
   var body = document.body;
   var btn = document.getElementById("themeToggle");
-
   var savedTheme = localStorage.getItem("glowspa-theme");
+
   if (savedTheme === "theme-dark" || savedTheme === "theme-light") {
     body.className = savedTheme;
+  } else {
+    if (!body.className) {
+      body.className = "theme-light";
+    }
   }
 
   if (btn) {
@@ -114,13 +118,6 @@ function setupMenuToggle() {
   }
 }
 
-function setupJoinForm() {
-  var form = document.getElementById("joinForm");
-  if (!form) {
-    return;
-  }
-
-
 function getSpasFromStorage() {
   var stored = localStorage.getItem("glowspa-spas");
   if (stored) {
@@ -138,18 +135,11 @@ function saveSpasToStorage(spas) {
   localStorage.setItem("glowspa-spas", JSON.stringify(spas));
 }
 
-  // ADD SERVICE PAGE (addservice.html) 
-
 function setupAddServicePage() {
   var nameInput = document.getElementById("spaName");
-  var minInput = document.getElementById("spaPriceMin");
-
-  // If these don't exist, we're not on addservice.html
-  if (!nameInput || !minInput) {
+  if (!nameInput) {
     return;
   }
-
- 
 }
 
 function addSpa() {
@@ -205,22 +195,17 @@ function addSpa() {
 
   alert("New spa added successfully!");
 
-  // Clear form
   nameInput.value = "";
   minInput.value = "";
   maxInput.value = "";
   ratingInput.value = "0.5";
   descInput.value = "";
-
-  
 }
-  // MANAGING PAGE (managing.html)
 
 function setupManagingPage() {
   var dynamicSpasContainer = document.getElementById("dynamicSpas");
   var noSpasMessage = document.getElementById("noSpasMessage");
 
-  // If not on managing.html, stop
   if (!dynamicSpasContainer) {
     return;
   }
@@ -249,7 +234,6 @@ function renderSpasList(spas, container, noSpasMessage) {
     var item = document.createElement("div");
     item.className = "service-item";
 
-    // image (we just use a generic image.png)
     var img = document.createElement("img");
     img.src = "images/image.png";
     img.alt = "";
@@ -273,14 +257,27 @@ function renderSpasList(spas, container, noSpasMessage) {
     info.appendChild(desc);
 
     item.appendChild(info);
-
     container.appendChild(item);
   }
 }
 
+function setupJoinForm() {
+  setupAboutPage();
+}
 
+function setupAboutPage() {
+  var form = document.getElementById("joinForm");
+  if (!form) {
+    return;
+  }
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitJoinForm();
+  });
+}
 
+function submitJoinForm() {
   var nameInput = document.getElementById("jt-name");
   var emailInput = document.getElementById("jt-email");
   var photoInput = document.getElementById("jt-photo");
@@ -288,66 +285,76 @@ function renderSpasList(spas, container, noSpasMessage) {
   var expertiseSelect = document.getElementById("jt-expertise");
   var messageBox = document.getElementById("joinMessage");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (!nameInput || !emailInput || !photoInput || !dobInput) {
+    return;
+  }
 
-    var errors = [];
+  var errors = [];
 
-    if (!nameInput || !emailInput || !photoInput || !dobInput) {
-      return;
-    }
+  var name = nameInput.value.trim();
+  var email = emailInput.value.trim();
+  var dobValue = dobInput.value.trim();
 
-    var name = nameInput.value.trim();
-    var email = emailInput.value.trim();
-    var dobValue = dobInput.value.trim();
+  if (!name) {
+    errors.push("Name is required");
+  }
+  if (!email) {
+    errors.push("Email is required");
+  }
+  if (!photoInput.value) {
+    errors.push("Photo is required");
+  }
+  if (!dobValue) {
+    errors.push("Date of birth is required");
+  }
+  if (expertiseSelect && !expertiseSelect.value) {
+    errors.push("Area of expertise is required");
+  }
 
-    if (!name) {
-      errors.push("Name is required");
-    }
-    if (!email) {
-      errors.push("Email is required");
-    }
-    if (!photoInput.value) {
-      errors.push("Photo is required");
-    }
-    if (!dobValue) {
-      errors.push("Date of birth is required");
-    }
-    if (expertiseSelect && !expertiseSelect.value) {
-      errors.push("Area of expertise is required");
-    }
+  if (/^\d/.test(name)) {
+    errors.push("Name cannot start with a number");
+  }
 
-    if (/^\d/.test(name)) {
-      errors.push("Name cannot start with a number");
-    }
-
-    if (dobValue) {
-      var dob = new Date(dobValue);
-      if (!isNaN(dob.getTime())) {
-        var maxDate = new Date("2008-12-31");
-        if (dob > maxDate) {
-          errors.push("Date of birth must not be after 2008");
-        }
+  if (dobValue) {
+    var dob = new Date(dobValue);
+    if (!isNaN(dob.getTime())) {
+      var maxDate = new Date("2008-12-31");
+      if (dob > maxDate) {
+        errors.push("Date of birth must not be after 2008");
       }
     }
+  }
 
-    if (errors.length > 0) {
-      if (messageBox) {
-        messageBox.textContent = errors.join(" - ");
-        messageBox.style.color = "#b91c1c";
-      } else {
-        alert(errors.join(" - "));
-      }
-      return;
-    }
-
+  if (errors.length > 0) {
+    var text = errors.join(" - ");
     if (messageBox) {
-      messageBox.textContent = "Thank you, " + name + ". Your application has been received.";
-      messageBox.style.color = "#166534";
+      messageBox.textContent = text;
+      messageBox.style.color = "#b91c1c";
     } else {
-      alert("Thank you, " + name + ". Your application has been received.");
+      alert(text);
     }
+    return;
+  }
 
+  var successText = "Thank you, " + name + ". Your application has been received.";
+  if (messageBox) {
+    messageBox.textContent = successText;
+    messageBox.style.color = "#166534";
+  } else {
+    alert(successText);
+  }
+
+  var form = document.getElementById("joinForm");
+  if (form) {
     form.reset();
-  });
+  }
+}
+
+function setupExplorePage() {
+}
+
+function setupCustomerPage() {
+}
+
+function setupStaffPage() {
 }
