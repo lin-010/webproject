@@ -90,9 +90,17 @@
       <label>Photo
         <input class="input" type="file" id="jt-photo" name="photo" accept="image/*" required>
       </label>
-      <label>Date Of Birth (YYYY-MM-DD)
-        <input class="input" type="date" id="jt-dob" name="dob" required>
-      </label>
+     <label>Date Of Birth (YYYY-MM-DD)
+  <input
+    class="input"
+    type="text"
+    name="dob"
+    id="jt-dob"
+    placeholder="2000-05-12"
+    required
+    pattern="\d{4}-\d{2}-\d{2}"
+  >
+</label>
       <label>Education
         <input class="input" type="text" name="education" placeholder="Diploma in Beauty Therapy">
       </label>
