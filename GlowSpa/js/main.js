@@ -119,3 +119,54 @@ function setupMenuToggle() {
     };
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  setupJoinForm();
+});
+
+function setupJoinForm() {
+  var form = document.getElementById("joinForm");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    var nameInput = document.getElementById("jt-name");
+    var emailInput = document.getElementById("jt-email");
+    var photoInput = document.getElementById("jt-photo");
+    var dobInput = document.getElementById("jt-dob");
+
+    if (!nameInput || !emailInput || !photoInput || !dobInput) return;
+
+    var name = nameInput.value.trim();
+    var email = emailInput.value.trim();
+    var dobValue = dobInput.value;
+    var file = photoInput.files[0];
+
+    if (!name || !email || !dobValue || !photoInput.value) {
+      alert("Please fill in all required fields.");
+      e.preventDefault();
+      return;
+    }
+
+    if (/^\d/.test(name)) {
+      alert("Name cannot start with a number.");
+      e.preventDefault();
+      return;
+    }
+
+    if (!file || !file.type || file.type.indexOf("image/") !== 0) {
+      alert("Photo must be an image file.");
+      e.preventDefault();
+      return;
+    }
+
+    var dob = new Date(dobValue);
+    var maxDate = new Date("2008-12-31");
+    if (dob > maxDate) {
+      alert("Date of birth must not be after 2008.");
+      e.preventDefault();
+      return;
+    }
+
+    alert("Thank you, " + name + ". Your request has been submitted.");
+  });
+}
+
