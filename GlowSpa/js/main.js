@@ -1,11 +1,8 @@
-
-// Wait until HTML is loaded
 document.addEventListener("DOMContentLoaded", function () {
   setupTheme();
   setupBackToTop();
   startClock();
   setupMenuToggle();
-
 });
 
 //THEME TOGGLE 
@@ -14,7 +11,6 @@ function setupTheme() {
   var body = document.body;
   var btn = document.getElementById("themeToggle");
 
-  // Load saved theme if exists
   var savedTheme = localStorage.getItem("glowspa-theme");
   if (savedTheme === "theme-dark" || savedTheme === "theme-light") {
     body.className = savedTheme;
@@ -45,12 +41,10 @@ function updateThemeButtonText(btn, body) {
   }
 }
 
-//  BACK TO TOP BUTTON (homepage)
-
 function setupBackToTop() {
   var btn = document.getElementById("backToTopBtn");
   if (!btn) {
-    return; 
+    return;
   }
 
   btn.style.display = "none";
@@ -71,12 +65,10 @@ function setupBackToTop() {
   };
 }
 
-//  CLOCK (footer) 
-
 function startClock() {
   var clockElement = document.getElementById("clock");
   if (!clockElement) {
-    return; 
+    return;
   }
 
   function updateClock() {
@@ -101,8 +93,6 @@ function startClock() {
   setInterval(updateClock, 1000);
 }
 
-// MOBILE MENU TOGGLE (for pages with .menu-toggle)
-
 function setupMenuToggle() {
   var buttons = document.getElementsByClassName("menu-toggle");
   if (!buttons || buttons.length === 0) {
@@ -111,7 +101,6 @@ function setupMenuToggle() {
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].onclick = function () {
-      // Each button is inside <nav id="site-nav">
       var nav = document.getElementById("site-nav");
       if (nav) {
         nav.classList.toggle("open");
@@ -119,54 +108,85 @@ function setupMenuToggle() {
     };
   }
 }
+
 document.addEventListener("DOMContentLoaded", function () {
   setupJoinForm();
 });
 
 function setupJoinForm() {
   var form = document.getElementById("joinForm");
-  if (!form) return;
+  if (!form) {
+    return;
+  }
+
+  var nameInput = document.getElementById("jt-name");
+  var emailInput = document.getElementById("jt-email");
+  var photoInput = document.getElementById("jt-photo");
+  var dobInput = document.getElementById("jt-dob");
+  var expertiseSelect = document.getElementById("jt-expertise");
+  var messageBox = document.getElementById("joinMessage");
 
   form.addEventListener("submit", function (e) {
-    var nameInput = document.getElementById("jt-name");
-    var emailInput = document.getElementById("jt-email");
-    var photoInput = document.getElementById("jt-photo");
-    var dobInput = document.getElementById("jt-dob");
+    e.preventDefault();
 
-    if (!nameInput || !emailInput || !photoInput || !dobInput) return;
+    var errors = [];
+
+    if (!nameInput || !emailInput || !photoInput || !dobInput) {
+      return;
+    }
 
     var name = nameInput.value.trim();
     var email = emailInput.value.trim();
-    var dobValue = dobInput.value;
-    var file = photoInput.files[0];
+    var dobValue = dobInput.value.trim();
 
-    if (!name || !email || !dobValue || !photoInput.value) {
-      alert("Please fill in all required fields.");
-      e.preventDefault();
-      return;
+    if (!name) {
+      errors.push("Name is required");
+    }
+    if (!email) {
+      errors.push("Email is required");
+    }
+    if (!photoInput.value) {
+      errors.push("Photo is required");
+    }
+    if (!dobValue) {
+      errors.push("Date of birth is required");
+    }
+    if (expertiseSelect && !expertiseSelect.value) {
+      errors.push("Area of expertise is required");
     }
 
     if (/^\d/.test(name)) {
-      alert("Name cannot start with a number.");
-      e.preventDefault();
+      errors.push("Name cannot start with a number");
+    }
+
+    if (dobValue) {
+      var dob = new Date(dobValue);
+      if (!isNaN(dob.getTime())) {
+        var maxDate = new Date("2008-12-31");
+        if (dob > maxDate) {
+          errors.push("Date of birth must not be after 2008");
+        }
+      }
+    }
+
+    if (errors.length > 0) {
+      if (messageBox) {
+        messageBox.textContent = errors.join(" - ");
+        messageBox.style.color = "#b91c1c";
+      } else {
+        alert(errors.join(" - "));
+      }
       return;
     }
 
-    if (!file || !file.type || file.type.indexOf("image/") !== 0) {
-      alert("Photo must be an image file.");
-      e.preventDefault();
-      return;
+    if (messageBox) {
+      messageBox.textContent = "Thank you, " + name + ". Your application has been received.";
+      messageBox.style.color = "#166534";
+    } else {
+      alert("Thank you, " + name + ". Your application has been received.");
     }
 
-    var dob = new Date(dobValue);
-    var maxDate = new Date("2008-12-31");
-    if (dob > maxDate) {
-      alert("Date of birth must not be after 2008.");
-      e.preventDefault();
-      return;
-    }
-
-    alert("Thank you, " + name + ". Your request has been submitted.");
+    form.reset();
   });
 }
 
