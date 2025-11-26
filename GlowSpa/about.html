@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glow Spa — About Us</title>
-  <link rel="stylesheet" href="css/styles.css"/>
-  
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body class="theme-light">
 
 <header class="header">
-  <div class="container nav">
+  <div class="container nav" id="site-nav">
     <a href="index.html" class="brand">
       <img src="images/logo.png" alt="Glow Spa logo" style="width:36px;height:36px;border-radius:10px;object-fit:cover">
       <span>Glow Spa</span>
@@ -21,7 +19,9 @@
       <a href="explore.html">Explore Spas</a>
       <a href="customer.html">Customer</a>
       <a href="managing.html">Managing</a>
+      <button id="themeToggle" class="theme-toggle" type="button">Dark theme</button>
     </nav>
+    <button class="menu-toggle" type="button">Menu</button>
   </div>
 </header>
 
@@ -59,28 +59,29 @@
   </section>
 
   <section id="join" class="card" style="margin-top:18px">
-    <h2 style="text-align:center;margin:0 0 .75rem">Join Our Team !</h2>
-    <form action="#" method="post" enctype="multipart/form-data" class="grid grid-2" style="gap:1rem">
+    <h2 style="text-align:center;margin:0 0 .75rem">Join Our Team!</h2>
+    <form id="joinForm" action="#" method="post" enctype="multipart/form-data" class="grid grid-2" style="gap:1rem">
       <label>Your Name
-        <input class="input" type="text" name="name" placeholder="Sara" required>
+        <input class="input" type="text" id="jt-name" name="name" placeholder="Sara" required>
       </label>
       <label>Your Email
-        <input class="input" type="email" name="email" placeholder="glowspa@example.com" required>
+        <input class="input" type="email" id="jt-email" name="email" placeholder="glowspa@example.com" required>
       </label>
       <label>Photo
-        <input class="input" type="file" name="photo" accept="image/*">
+        <input class="input" type="file" id="jt-photo" name="photo" accept="image/*" required>
       </label>
       <label>Date Of Birth
-        <input class="input" type="date" name="dob" value="1999-06-10" required>
+        <input class="input" type="date" id="jt-dob" name="dob" value="1999-06-10" required>
       </label>
       <label>Education
         <input class="input" type="text" name="education" placeholder="Diploma in Beauty Therapy">
       </label>
       <label>Area of expertise
         <select class="input" name="expertise" required>
+          <option value="">Select specialization</option>
           <option>Massage Therapy</option>
           <option>Skincare</option>
-          <option>Manicure & Pedicure</option>
+          <option>Manicure &amp; Pedicure</option>
           <option>Administration</option>
         </select>
       </label>
@@ -105,7 +106,7 @@
         </a>
       </div>
       <div class="band-right">
-        <a href="#contact" style="text-decoration:none;color:inherit"><h4>Contact us</h4></a>
+        <a href="#join" style="text-decoration:none;color:inherit"><h4>Contact us</h4></a>
         <div class="handles" style="display:flex;gap:.75rem;flex-wrap:wrap">
           <span>@glowspa.sa</span>
           <span>@spa_support</span>
@@ -119,9 +120,10 @@
 
 <footer class="footer">
   <div class="container content">
-    <small>© 2025 Glow Spa</small>
+    <small>© 2025 Glow Spa — <span id="clock"></span></small>
   </div>
 </footer>
 
+<script src="js/main.js"></script>
 </body>
 </html>
