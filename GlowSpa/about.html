@@ -29,55 +29,69 @@
 
 <main class="container">
 
+  <!-- Staff members -->
   <section class="card" style="padding:1.25rem">
-    <div style="font-weight:700;text-align:center;margin-bottom:.75rem">Staff Members</div>
-    <div class="rail">
-      <div class="card member" style="text-align:center">
-        <img src="images/sspa2.jpg" alt="Hind">
+    <h2 style="text-align:center;margin-bottom:1rem">Staff Members</h2>
+
+    <div class="rail" style="display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center">
+      <div class="card member" style="width:180px;text-align:center;padding:10px">
+        <img src="images/sspa2.jpg" alt="Hind" style="width:100%;border-radius:10px;object-fit:cover">
         <div style="margin-top:.5rem;font-weight:600"><a href="staff-profile-hind.html">Hind</a></div>
-        <div style="color:#475569">@hind_glowspa</div>
+        <div style="color:#666;font-size:14px">@hind_glowspa</div>
       </div>
-      <div class="card member" style="text-align:center">
-        <img src="images/sspa3.jpg" alt="Rana">
+
+      <div class="card member" style="width:180px;text-align:center;padding:10px">
+        <img src="images/sspa3.jpg" alt="Rana" style="width:100%;border-radius:10px;object-fit:cover">
         <div style="margin-top:.5rem;font-weight:600"><a href="staff-profile-rana.html">Rana</a></div>
-        <div style="color:#475569">@rana_spabeauty</div>
+        <div style="color:#666;font-size:14px">@rana_spabeauty</div>
       </div>
-      <div class="card member" style="text-align:center">
-        <img src="images/sspa4.jpg" alt="Maha">
+
+      <div class="card member" style="width:180px;text-align:center;padding:10px">
+        <img src="images/sspa4.jpg" alt="Maha" style="width:100%;border-radius:10px;object-fit:cover">
         <div style="margin-top:.5rem;font-weight:600"><a href="staff-profile-maha.html">Maha</a></div>
-        <div style="color:#475569">@maha_wellness</div>
+        <div style="color:#666;font-size:14px">@maha_wellness</div>
       </div>
-      <div class="card member" style="text-align:center">
-        <img src="images/sspa5.jpg" alt="Aisha">
+
+      <div class="card member" style="width:180px;text-align:center;padding:10px">
+        <img src="images/sspa5.jpg" alt="Aisha" style="width:100%;border-radius:10px;object-fit:cover">
         <div style="margin-top:.5rem;font-weight:600"><a href="staff-profile-aisha.html">Aisha</a></div>
-        <div style="color:#475569">@aisha_spa</div>
+        <div style="color:#666;font-size:14px">@aisha_spa</div>
       </div>
     </div>
+
     <div style="text-align:center;margin-top:1rem">
       <a href="#join" class="btn primary">Join Our Team!</a>
     </div>
   </section>
 
+  <!-- Join our team form -->
   <section id="join" class="card" style="margin-top:18px">
     <h2 style="text-align:center;margin:0 0 .75rem">Join Our Team!</h2>
+
     <form id="joinForm" action="#" method="post" enctype="multipart/form-data" class="grid grid-2" style="gap:1rem">
       <label>Your Name
         <input class="input" type="text" id="jt-name" name="name" placeholder="Sara" required>
       </label>
+
       <label>Your Email
         <input class="input" type="email" id="jt-email" name="email" placeholder="glowspa@example.com" required>
       </label>
+
       <label>Photo
         <input class="input" type="file" id="jt-photo" name="photo" accept="image/*" required>
       </label>
-      <label>Date Of Birth
-        <input class="input" type="date" id="jt-dob" name="dob" value="1999-06-10" required>
+
+      <!-- هنا نخليه نص عادي عشان تكتبين الميلادي بنفسك -->
+      <label>Date Of Birth (YYYY-MM-DD)
+        <input class="input" type="text" id="jt-dob" name="dob" placeholder="1999-06-10" required>
       </label>
+
       <label>Education
         <input class="input" type="text" name="education" placeholder="Diploma in Beauty Therapy">
       </label>
+
       <label>Area of expertise
-        <select class="input" name="expertise" required>
+        <select class="input" name="expertise" id="jt-expertise" required>
           <option value="">Select specialization</option>
           <option>Massage Therapy</option>
           <option>Skincare</option>
@@ -85,18 +99,26 @@
           <option>Administration</option>
         </select>
       </label>
+
       <label>Skills
-        <input class="input" type="text" name="skills" placeholder="Massage, Skin care, Spa management">
+        <input class="input" type="text" id="jt-skills" name="skills" placeholder="Massage, Skin care, Spa management">
       </label>
+
       <label style="grid-column:1/-1">General message
-        <input class="input" type="text" name="message" placeholder="How can I join Glow Spa?">
+        <input class="input" type="text" id="jt-message" name="message" placeholder="How can I join Glow Spa?">
       </label>
+
       <div style="grid-column:1/-1;text-align:center;margin-top:.5rem">
-        <button class="btn primary" type="submit">Submit</button>
+        <button class="btn primary" type="submit" style="padding:10px 20px;font-size:16px;border-radius:8px">
+          Submit Application
+        </button>
       </div>
+
+      <div id="joinMessage" style="grid-column:1/-1;text-align:center;margin-top:.5rem;font-size:14px;"></div>
     </form>
   </section>
 
+  <!-- Bottom band -->
   <section class="bottom-band container" style="margin-top:20px">
     <div class="band" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border:1px solid var(--border);border-radius:14px;padding:16px;background:var(--bg-soft)">
       <div class="band-left">
@@ -106,8 +128,8 @@
         </a>
       </div>
       <div class="band-right">
-        <a href="#join" style="text-decoration:none;color:inherit"><h4>Contact us</h4></a>
-        <div class="handles" style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <h4>Contact us</h4>
+        <div class="handles" style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center">
           <span>@glowspa.sa</span>
           <span>@spa_support</span>
           <span>@relax.glow</span>
@@ -124,9 +146,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
-</body>
-</html>
 <script src="js/main.js"></script>
 </body>
 </html>
