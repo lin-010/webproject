@@ -1278,13 +1278,86 @@ body {
                             &q/0081;6906559b;Chrome;B2621227-5306-4B36-93C8-158FF64CFCA1 
 
 /* ===== inline styles from GlowSpaSite copy/index.html ===== */
-.svc-grid{display:grid;gap:1rem;grid-template-columns:repeat(3,minmax(0,1fr))}
-    .svc-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;position:relative;background:#fff}
-    .svc-card img{width:100%;height:200px;object-fit:cover;display:block}
-    .svc-card .body{padding:.75rem}
-    .svc-card .info{position:absolute;inset:0;background:rgba(30,64,175,.08);opacity:0;transition:.15s ease;display:flex;align-items:center;justify-content:center;font-weight:600}
-    .svc-card:hover .info{opacity:1}
-    @media(max-width:900px){.svc-grid{grid-template-columns:1fr}}
+/* Popular Services cards */
+.svc-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.svc-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+}
+
+.svc-card img {
+  width: 100%;
+  height: 170px;         
+  object-fit: cover;
+  display: block;
+}
+
+.svc-card .body {
+  padding: .75rem .9rem .5rem;
+}
+
+.svc-card .body-title {
+  font-weight: 700;
+  margin-bottom: .15rem;
+}
+
+.svc-card .body-price {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.svc-card .info {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);  
+  color: #f9fafb;
+  opacity: 0;
+  transition: opacity .18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  font-weight: 600;
+}
+
+.svc-card:hover .info {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .svc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.theme-dark .svc-card {
+  background: #020617;
+  border-color: #1f2937;
+}
+
+body.theme-dark .svc-card .body-title {
+  color: #e5e7eb;
+}
+
+body.theme-dark .svc-card .body-price {
+  color: #cbd5f5;
+}
+
+body.theme-dark .section-title {
+  color: #e5e7eb;
+}
+
 
 /* ===== inline styles from GlowSpaSite copy/about.html ===== */
 .rail{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.25rem;scroll-snap-type:x mandatory}
