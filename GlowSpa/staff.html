@@ -6,7 +6,6 @@
   <title>Glow Spa — Staff</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="images/favicon.png" />
-
 </head>
 <body>
   <header class="header">
@@ -22,7 +21,6 @@
           <a href="customer.html">Customers</a>
           <a href="managing.html">Managing</a>
           <a href="staff.html" class="active">Staff</a>
-         
         </div>
       </nav>
     </div>
@@ -31,109 +29,70 @@
   <section class="hero">
     <div class="container">
       <h1 class="page-title">Staff</h1>
-      <p class="page-subtitle">Team members, roles, and performance.</p>
+      <p class="page-subtitle">Team members, roles, and contact information.</p>
     </div>
   </section>
-  <main class="container section">
 
-        <table>
-		<caption><strong>Staff Members</strong> </caption> 
-		<tr>
-		<th>name</th>
-		<th>Photo</th>
-		<th>Email</th>
-		<th>Dob</th>
-		<th>Area of experience</th>
-		     <th colspan="2">Skills & Education</th>
-		</tr>
-		
-		<tr>
-		<td>Amal</td>
-		<td><img src="images/Profile.jpeg" alt=""  width="50" height="50" ></td>
-		<td>Amalqa@gmail.com</td>
-		<td>17 / 03 / 1998</td>
-		<td>Riyadh , saudi arabia </td>
-		<td>
-        <ul>
-          <li>Skin care treatments</li>
-          <li>Facial cleansing</li>
-        </ul>
-      </td>
-		<td>diploma in cosmetology (2018)</td>
-		</tr>
-		 
-		 <tr>
-		<td>linah </td>
-		<td><img src="images/Profile.jpeg" alt=""  width="50" height="50" ></td>
-		<td>linahsa@gmail.com</td>
-		<td>11 / 06 / 1997</td>
-		<td>Riyadh , saudi arabia </td>
-		 <td>
-        <ul>
-          <li>Massage therapy</li>
-          <li>Full body massage</li>
-        </ul>
-      </td>
-		<td>Massage therapy certification(2020) </td>
-		</tr> 
-		
-		<tr>
-		<td>sara</td>
-		<td><img src="images/Profile.jpeg" alt=""  width="50" height="50" ></td>
-		<td>Saramo@gmail.com</td>
-		<td>18 / 09 / 1999</td>
-		<td>Riyadh , saudi arabia </td>
-		<td>
-        <ul>
-          <li>Aromatic Oil Massage</li>
-          <li>Hot Stone Massage</li>
-        </ul>
-      </td>
-		<td>Hospitality Management(2019)</td>
-		</tr>
-		
-		<tr>
-		<td>Nourah</td>
-		<td><img src="images/Profile.jpeg" alt=""  width="50" height="50" ></td>
-		<td>NourahMo@gmail.com</td>
-		<td>01 / 01 / 1998</td>
-		<td>Riyadh , saudi arabia </td>
-	<td>
-        <ul>
-          <li>Manicures</li>
-          <li>Pedicures</li>
-        </ul>
-      </td>
-		<td>Bachelor in Nutrition Science (2017)</td>
-		</tr>
-		
-		</table>
+  <main class="container section">
+    <!-- Add Staff Form -->
+    <section class="card">
+      <h2 class="section-title">Add Staff Member</h2>
+      <div class="form-field">
+        <label for="staffName">Name</label>
+        <input type="text" id="staffName" placeholder="e.g. Sara Ali">
+      </div>
+      <div class="form-field">
+        <label for="staffRole">Role</label>
+        <input type="text" id="staffRole" placeholder="e.g. Hair Specialist">
+      </div>
+      <div class="form-field">
+        <label for="staffContact">Contact</label>
+        <input type="text" id="staffContact" placeholder="e.g. 05xxxxxxxx">
+      </div>
+      <a class="btn-primary mt-4" onclick="addStaff()">Add Staff</a>
+    </section>
+
+    <!-- Staff List Table -->
+    <section class="card mt-6">
+      <h2 class="section-title">Current Team Members</h2>
+      <table class="services-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="staffBody">
+          <!-- JS will insert rows here -->
+        </tbody>
+      </table>
+      <p id="noStaffMessage" class="muted-text">No staff members added yet.</p>
+    </section>
   </main>
 
   <footer class="footer">
-   
-	<section class="bottom-band container">
-  <div class="band">
-    
-    <div class="band-left">
-      <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
-      <div class="band-about">
-        <a href="about.html">About</a>
+    <section class="bottom-band container">
+      <div class="band">
+        <div class="band-left">
+          <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+          <div class="band-about">
+            <a href="about.html">About</a>
+          </div>
+        </div>
+        <div class="band-right">
+          <h4>Contact us</h4>
+          <div class="handles">
+            <span>@glowapa.sa</span>
+            <span>@spa_support</span>
+            <span>@relax.glow</span>
+          </div>
+        </div>
       </div>
-    </div>
-
-    
-    <div class="band-right">
-      <h4>Contact us</h4>
-      <div class="handles">
-         <span>@glowapa.sa</span>
-        <span>@spa_support</span>
-        <span>@relax.glow</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
