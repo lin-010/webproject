@@ -74,6 +74,29 @@ body.theme-dark {
   --primary-700: #0369a1;
 }
 
+.brand span {
+  color: var(--text);
+}
+
+/* Dark mode */
+body.theme-dark .brand span {
+  color: #f9fafb; /* bright white */
+}
+
+
+.band-about a {
+  color: var(--text);
+}
+
+/* Dark mode */
+body.theme-dark .band-about a {
+  color: #f9fafb !important; 
+}
+
+body.theme-dark .band-about a:hover {
+  color: #93c5fd !important; 
+}
+
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
