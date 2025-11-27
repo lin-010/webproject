@@ -320,6 +320,152 @@ function applySpaSort(sortValue, spaList) {
   });
   cards.forEach(card => spaList.appendChild(card));
 }
+//======customer page=========
+function setupCustomerPage() {
+  var bookingsSection = document.getElementById("bookings");
+  var mainMenu = document.getElementById("main-menu");
+  var reviewsSection = document.getElementById("reviews");
+
+  if (!bookingsSection || !mainMenu || !reviewsSection) {
+    return;
+  }
+
+  updateCustomerBreadcrumb("");
+
+  var cards = document.getElementsByClassName("card");
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].style.cursor = "pointer";
+  }
+}
+
+var currentService = "";
+var currentRating = 0;
+
+function updateCustomerBreadcrumb(path) {
+  var b = document.getElementById("breadcrumb");
+  if (!b) return;
+
+  if (path) {
+    b.textContent = "Home > Customer > " + path;
+  } else {
+    b.textContent = "Home > Customer";
+  }
+}
+
+function showSection(id) {
+  var mainMenu = document.getElementById("main-menu");
+  var bookingsSection = document.getElementById("bookings");
+  var reviewsSection = document.getElementById("reviews");
+  if (!mainMenu || !bookingsSection || !reviewsSection) return;
+
+  mainMenu.classList.add("hidden");
+  bookingsSection.classList.add("hidden");
+  reviewsSection.classList.add("hidden");
+
+  var target = document.getElementById(id);
+  if (target) {
+    target.classList.remove("hidden");
+  }
+
+  if (id === "bookings") {
+    updateCustomerBreadcrumb("Bookings");
+  } else if (id === "reviews") {
+    updateCustomerBreadcrumb("Review Experience");
+  } else {
+    updateCustomerBreadcrumb("");
+  }
+}
+
+function openPopup(service) {
+  currentService = service;
+  currentRating = 0;
+  var popup = document.getElementById("popup");
+  var title = document.getElementById("popup-service");
+  if (!popup || !title) return;
+
+  popup.classList.remove("hidden");
+  title.textContent = "Confirm booking: " + service;
+  updateCustomerBreadcrumb("Bookings");
+}
+
+function closePopup() {
+  var popup = document.getElementById("popup");
+  if (!popup) return;
+  popup.classList.add("hidden");
+  updateCustomerBreadcrumb("Bookings");
+}
+
+function confirmBooking() {
+  var popup = document.getElementById("popup");
+  if (!popup) return;
+
+  popup.innerHTML =
+    "<p>Your booking for <strong>" +
+    currentService +
+    "</strong> has been confirmed!</p>" +
+    '<a class="btn-primary" onclick="goHome()">Close</a>';
+
+  updateCustomerBreadcrumb("Bookings");
+}
+
+function goHome() {
+  var popup = document.getElementById("popup");
+  var mainMenu = document.getElementById("main-menu");
+  var bookingsSection = document.getElementById("bookings");
+  var reviewsSection = document.getElementById("reviews");
+
+  if (popup) popup.classList.add("hidden");
+  if (mainMenu && bookingsSection && reviewsSection) {
+    mainMenu.classList.remove("hidden");
+    bookingsSection.classList.add("hidden");
+    reviewsSection.classList.add("hidden");
+  }
+
+  updateCustomerBreadcrumb("");
+}
+
+function setRating(stars) {
+  currentRating = stars;
+
+  var starContainer = document.getElementById("stars");
+  if (!starContainer) return;
+
+  var starElements = starContainer.getElementsByTagName("span");
+  for (var i = 0; i < starElements.length; i++) {
+    if (i < stars) {
+      starElements[i].classList.add("active");
+    } else {
+      starElements[i].classList.remove("active");
+    }
+  }
+}
+
+function submitReview() {
+  var reviewTextElement = document.getElementById("reviewText");
+  var popup = document.getElementById("popup");
+  if (!reviewTextElement || !popup) return;
+
+  var text = reviewTextElement.value.trim();
+  if (text === "") {
+    alert("Please write your review before submitting.");
+    return;
+  }
+
+  if (currentRating === 0) {
+    alert("Please select a star rating before submitting.");
+    return;
+  }
+
+  popup.classList.remove("hidden");
+  popup.innerHTML =
+    "<p>Your review has been submitted successfully!</p>" +
+    "<p><strong>Rating:</strong> " +
+    currentRating +
+    " ★</p>" +
+    '<a class="btn-primary" onclick="goHome()">Close</a>';
+
+  updateCustomerBreadcrumb("Review Experience");
+}
 
 // ====== STAFF PAGE ADDITIONS ======
 function getStaffFromStorage() {
