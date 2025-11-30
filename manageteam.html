@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glow Spa — Manage Team</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="images/favicon.png" />
+
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="site-nav">
+        <a href="index.html" class="brand" aria-label="Home">
+          <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+          <span>Glow Spa</span>
+        </a>
+        <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+        <div class="nav-links">
+          <a href="explore.html">Explore</a>
+          <a href="customer.html">Customers</a>
+          <a href="managing.html" class="active">Managing</a>
+          <a href="staff.html">Staff</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="index.html">Home</a> ›
+  <a href="managing.html">Managing</a> ›
+  <span>Manage staff</span>
+</nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="page-title">Manage Staff Members</h1>
+      <p class="page-subtitle">Select members to delete, or add a new member.</p>
+    </div>
+  </section>
+  <main class="container section">
+    <div class="grid grid-2">
+      <section class="card">
+        <h3 class="section-title">Staff Members</h3>
+        <form class="mt-4">
+          <div class="member-grid">
+
+  <div class="member">
+    <input id="m1" type="checkbox" />
+    <label for="m1">
+      <img src="images/Profile.jpeg" alt="Amal" />
+      Amal
+    </label>
+  </div>
+
+  <div class="member">
+    <input id="m2" type="checkbox" />
+    <label for="m2">
+      <img src="images/Profile.jpeg" alt="Linah" />
+      Linah
+    </label>
+  </div>
+
+  <div class="member">
+    <input id="m3" type="checkbox" />
+    <label for="m3">
+      <img src="images/Profile.jpeg" alt="Sara" />
+      Sara
+    </label>
+  </div>
+
+  <div class="member">
+    <input id="m4" type="checkbox" />
+    <label for="m4">
+      <img src="images/Profile.jpeg" alt="Nourah" />
+      Nourah
+    </label>
+  </div>
+</div>
+
+          <div class="mt-6">
+            <button class="btn primary" type="submit">Delete</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h3 class="section-title">Add New Member</h3>
+        <form class="mt-4">
+
+          <div class="form-row">
+            <img src="images/image.png" alt="add image">
+              <label>Photo</label>
+              <input class="mt-2" type="file" accept="image/*" required />
+            </div>
+
+          <div class="grid grid-2">
+            <div class="form-row">
+              <label>Name</label>
+              <input class="input mt-2" type="text" placeholder= "Enter name" required />
+            </div>
+            
+            <div class="form-row">
+              <label>Date of Birth</label>
+              <input class="input mt-2" type="date" required />
+            </div>
+            <div class="form-row">
+              <label>Email</label>
+              <input class="input mt-2" type="email" placeholder ="example@email.com"required />
+            </div>
+            <div class="form-row">
+              <label>Area of Expertise</label>
+              <input class="input mt-2" type="text" required />
+            </div>
+            <div class="form-row">
+              <label>Skills</label>
+              <input class="input mt-2" type="text" required />
+            </div>
+            <div class="field full">
+              <label>Education</label>
+              <select class="input" required>
+                <option value="" disabled selected>Select Education Level</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Bachelor">Bachelor’s Degree</option>
+                <option value="Master">Master’s Degree</option>
+                <option value="PhD">PhD</option>
+                <option value="Certification">Professional Certification</option>
+              </select>
+            </div>
+
+
+          </div>
+          <div class="mt-6">
+            <button class="btn primary" type="submit">Add Staff Member +</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  
+<section class="bottom-band container">
+  <div class="band">
+    
+    <div class="band-left">
+      <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+      <div class="band-about">
+        <a href="about.html">About</a>
+      </div>
+    </div>
+
+    
+    <div class="band-right">
+      <h4>Contact us</h4>
+      <div class="handles">
+         <span>@glowapa.sa</span>
+        <span>@spa_support</span>
+        <span>@relax.glow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content">
+        <div>
+         
+           <p>© 2025 Glow Spa. All rights reserved.</p>
+
+
+        </div>
+    
+  </footer>
+        <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glow Spa — Staff</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="images/favicon.png" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" id="site-nav">
+        <a href="index.html" class="brand" aria-label="Home">
+          <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+          <span>Glow Spa</span>
+        </a>
+        <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+        <div class="nav-links">
+          <a href="explore.html">Explore</a>
+          <a href="customer.html">Customers</a>
+          <a href="managing.html">Managing</a>
+          <a href="staff.html" class="active">Staff</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="page-title">Staff</h1>
+      <p class="page-subtitle">Team members, roles, and contact information.</p>
+    </div>
+  </section>
+
+  <main class="container section">
+    <!-- Add Staff Form -->
+    <section class="card">
+      <h2 class="section-title">Add Staff Member</h2>
+      <div class="form-field">
+        <label for="staffName">Name</label>
+        <input type="text" id="staffName" placeholder="e.g. Sara Ali">
+      </div>
+      <div class="form-field">
+        <label for="staffRole">Role</label>
+        <input type="text" id="staffRole" placeholder="e.g. Hair Specialist">
+      </div>
+      <div class="form-field">
+        <label for="staffContact">Contact</label>
+        <input type="text" id="staffContact" placeholder="e.g. 05xxxxxxxx">
+      </div>
+      <a class="btn-primary mt-4" onclick="addStaff()">Add Staff</a>
+    </section>
+
+    <!-- Staff List Table -->
+    <section class="card mt-6">
+      <h2 class="section-title">Current Team Members</h2>
+      <table class="services-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="staffBody">
+          <!-- JS will insert rows here -->
+        </tbody>
+      </table>
+      <p id="noStaffMessage" class="muted-text">No staff members added yet.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <section class="bottom-band container">
+      <div class="band">
+        <div class="band-left">
+          <img src="images/logo.png" alt="Glow Spa Logo" style="width:44px; height:44px; border-radius:12px;">
+          <div class="band-about">
+            <a href="about.html">About</a>
+          </div>
+        </div>
+        <div class="band-right">
+          <h4>Contact us</h4>
+          <div class="handles">
+            <span>@glowapa.sa</span>
+            <span>@spa_support</span>
+            <span>@relax.glow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
